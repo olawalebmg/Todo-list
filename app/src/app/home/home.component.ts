@@ -19,9 +19,10 @@ export class HomeComponent implements OnInit {
  
   login_page(){
     this.router.navigate(["login"])
+  }
 
-
-
+  register(){
+    this.router.navigate(["register"])
   }
 
 }
