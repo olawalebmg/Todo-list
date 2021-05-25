@@ -9,6 +9,12 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { DashboardComponent } from './dashboard/dashboard.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,11 +22,15 @@ import { UserHomeComponent } from './user-home/user-home.component';
     RegisterComponent,
     HomeComponent,
     ErrorComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
