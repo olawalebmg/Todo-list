@@ -60,7 +60,7 @@
         <a href="#" class="twitter btn">
           <i class="fa fa-twitter fa-fw"></i> Login with Twitter
         </a>
-        <a href="#" class="google btn"><i class="fa fa-google fa-fw">
+        <a (click)="AuthService.GoogleAuth()" class="google btn"><i class="fa fa-google fa-fw">
           </i> Login with Google+
         </a>
       </div>
@@ -70,9 +70,9 @@
           <p>Or sign in manually:</p>
         </div>
 
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+        <input type="text" name="username" placeholder="Username"  #userName required>
+        <input type="password" name="password" placeholder="Password" #userPassword required>
+        <input  type="button" value="Login" class="btn btnPrimary" (click)="AuthService.SignIn(userName.value, userPassword.value)">
       </div>
       
     </div>
@@ -83,7 +83,7 @@
 <div class="bottom-container">
   <div class="row">
     <div class="col">
-      <a href="#" style="color:white" class="btn">Sign up</a>
+      <a (click)="AuthService.SignUp(userName.value, userPassword.value)"style="color:white" class="btn">Sign up</a>
     </div>
     <div class="col">
       <a href="#" style="color:white" class="btn">Forgot password?</a>
