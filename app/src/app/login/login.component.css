@@ -52,7 +52,6 @@ input:hover,
 
 /* style the submit button */
 input[type=button] {
-  background-color: #04AA6D;
   color: white;
   cursor: pointer;
 }
@@ -107,6 +106,9 @@ input[type=button]:hover {
   text-align: center;
   background-color: #666;
   border-radius: 0px 0px 4px 4px;
+
+
+  
 }
 
 /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
@@ -130,7 +132,7 @@ input[type=button]:hover {
 }
 
 /* Set the width of the sidebar to 120px */
-.w3-sidebar {width: 120px;background: #222;}
+.w3-sidebar {width: 120px;}
 /* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
 #main {margin-left: 120px}
 /* Remove margins from "page content" on small screens */
