@@ -7,7 +7,8 @@ import { AuthService } from "../auth-service";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  user= "assets/user.png";
+  pic= "assets/user.png";
+
 
   
   @ViewChild('mySidebar', { static: false })
