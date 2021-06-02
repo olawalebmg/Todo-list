@@ -1,0 +1,29 @@
+.data li i {
+    float: right;
+    color: #888;
+    cursor: pointer;
+  }
+
+
+  .data li #a {
+    float: left;
+    color: #888;
+    cursor: pointer;
+  }
+
+
+
+  .data li {
+    background: #fff;
+    border-left: 4px solid darkcyan;
+    padding: 1em;
+    margin: 1em auto;
+    color: #666;
+    font-family: "Raleway";
+    text-align: center;
+    list-style-type: none;
+  }
+
+  .data {
+    margin-top: 1em;
+  }

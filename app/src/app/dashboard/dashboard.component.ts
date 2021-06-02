@@ -8,7 +8,26 @@ import { AuthService } from "../auth-service";
 })
 export class DashboardComponent implements OnInit {
   pic= "assets/user.png";
+  todoArray = Array();
+  todo: any;
 
+  addTodo(value:string) {
+    if (value !== "") {
+      this.todoArray.push(value);
+      //console.log(this.todos)
+    } else {
+      alert("Field required **");
+    }
+  }
+
+  // delete item
+  deleteItem(todo: any) {
+      for (let i = 0; i <= this.todoArray.length; i++) {
+        if (todo == this.todoArray[i]) {
+          this.todoArray.splice(i, 1);
+        }
+      }
+    }
 
   
   @ViewChild('mySidebar', { static: false })
@@ -33,5 +52,7 @@ export class DashboardComponent implements OnInit {
     this.mySidebar.nativeElement.style.display = 'none';
     this.overlayBg.nativeElement.style.display = "none";
   }
+
+  
 
 }
