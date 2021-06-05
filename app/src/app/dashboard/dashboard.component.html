@@ -50,7 +50,7 @@
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-tasks"></i> My Home</b></h5>
+    <h5><b><i class="fa fa-home"></i> My Home</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
@@ -99,22 +99,22 @@
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-third">
-        <h5>Regions</h5>
-        <div class="w3-container w3-padding">
-          <h6 class="w3-opacity">Add Tasks</h6>
-          <input type="text" #todo class="w3-border w3-padding" placeholder="Add Task" name="todo" ngModel/>
-          <button (click)="addTodo(todo.value)" type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> &nbsp;Post</button> 
+        <div>
+          <h6 class="w3-opacity ">New Tasks</h6>
+          <input  id="add_text" type="text" placeholder="Add .." name="search" #todo name="todo" ngModel >
+          <button  id="add_button" (click)="addTodo(todo.value)"type="submit"><i class="fa fa-search"></i></button>
+          
         </div>
 
       </div>
       <div class="w3-twothird">
-        <h5>Feeds</h5>
+        <h5> &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Feeds</h5>
         <div class="data">
           <ul class="list-unstyled">
             <li *ngFor="let todo of todoArray">
               {{todo}}
               <i id="a" class="fa fa-clock-o w3-xlarge "></i>
-              <i (click)="deleteItem(todo)" class="material-icons">delete</i>
+              <i (click)="deleteItem(todo)" class="fa fa-trash-o w3-xlarge"></i>
             </li>
           </ul>
         </div>

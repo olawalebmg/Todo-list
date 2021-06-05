@@ -27,3 +27,28 @@
   .data {
     margin-top: 1em;
   }
+#add_button {
+    float: left;
+    width: 20%;
+    padding: 7px;
+    margin-bottom: 10%;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  #add_button:hover {
+    background: #0b7dda;
+  }
+
+  #add_text {
+    padding: 7px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
