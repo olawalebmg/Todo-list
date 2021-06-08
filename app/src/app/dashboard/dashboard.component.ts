@@ -1,5 +1,16 @@
 import { Component, OnInit ,ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from "../auth-service";
+import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument}from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+interface Todo {
+  content: string;
+  id?: string;
+  datemodified?: Date;
+  isDone?: boolean;
+}
+
 
 @Component({
   selector: 'app-dashboard',
@@ -35,10 +46,33 @@ export class DashboardComponent implements OnInit {
   @ViewChild('overlayBg', { static: false })
   overlayBg!: ElementRef;
 
-  constructor(public AuthService:AuthService) { }
+  // Observable which will hold an array of todo
+  todoList$: Observable<Todo[]>;
 
-  ngOnInit(): void {
+
+  constructor(private db: AngularFirestore,public AuthService:AuthService) {
+ 
+  // The code below will query all the todo
+  // and return id + data (e.g. title, description)
+    this.todoList$ = this.db.collection<Todo>('items')
+      .snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as Todo;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        }))
+      );
   }
+ 
+  ngOnInit() {
+    this.todoList$.subscribe(data => console.log(data));
+  }
+
+  
+ 
+
+
+
   open(){ if (this.mySidebar.nativeElement.style.display === 'block') {
     this.mySidebar.nativeElement.style.display = 'none';
     this.overlayBg.nativeElement.style.display = "none";
