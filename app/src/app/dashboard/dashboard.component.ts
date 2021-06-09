@@ -34,8 +34,8 @@ export class DashboardComponent implements OnInit {
   // getting dom element in html 
   @ViewChild('mySidebar', { static: false })
   mySidebar!: ElementRef;
-  @ViewChild('overlayBg', { static: false })
-  overlayBg!: ElementRef;
+  @ViewChild('myOverlay', { static: false })
+  myOverlay!: ElementRef;
 
   // Observable which will hold an array of todo
   todoList$: Observable<Todo[]>;
@@ -70,17 +70,17 @@ export class DashboardComponent implements OnInit {
   open() {
     if (this.mySidebar.nativeElement.style.display === 'block') {
       this.mySidebar.nativeElement.style.display = 'none';
-      this.overlayBg.nativeElement.style.display = "none";
+      this.myOverlay.nativeElement.style.display = "none";
     } else {
       this.mySidebar.nativeElement.style.display = 'block';
-      this.overlayBg.nativeElement.style.display = "block";
+      this.myOverlay.nativeElement.style.display = "block";
     }
   }
 
 
   close() {
     this.mySidebar.nativeElement.style.display = 'none';
-    this.overlayBg.nativeElement.style.display = "none";
+    this.myOverlay.nativeElement.style.display = "none";
   }
 
   // add to do and store in database 
