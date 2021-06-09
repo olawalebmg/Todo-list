@@ -111,7 +111,6 @@
                 <input placeholder="Enter To do" class="textareafull" [(ngModel)]="inputValue.content"
                   name="inputValue">
               </div>
-              <span class="example-spacer"></span>
               <button (click)="addNewItem()" *ngIf="!editValue">Add</button>
               <button (click)="saveNewItem()" *ngIf="editValue">Save</button>
             </form>
