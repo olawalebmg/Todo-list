@@ -1,45 +1,35 @@
 <table border="1">
-	<thead>
-		<td>Address</td>
-		<td>Name</td>
-		<td>Email</td>
-		<td>Phone</td>
-		<td>Votes</td>
-		<td>Actions</td>
-	</thead>
-	<tbody *ngFor="let o of todoList | async">
-		<tr>
-			<td scope="row">
-				{{o}}
-			</td>
-			<td scope="row">
-				
-			</td>
-			<td scope="row">
-				
-			</td>
-			<td scope="row">
-				
-			</td>
-			<td scope="row">
-		
-			</td>
-			<td scope="row">
-        <button 
-          mat-button 
-          color="warn" 
-          class="delete" 
-          type="button" 
-          ></button>
-          Upvote
-        
+  <thead>
+    <td>Address</td>
+    <td>Name</td>
+    <td>Email</td>
+    <td>Phone</td>
+    <td>Votes</td>
+    <td>Actions</td>
+  </thead>
+  <tbody *ngFor="let o of todoList | async">
+    <tr>
+      <td scope="row">
+        {{o}}
+      </td>
+      <td scope="row">
 
-				<button 
-          mat-button 
-          color="warn" 
-          class="delete" 
-          type="button" 
-          >
+      </td>
+      <td scope="row">
+
+      </td>
+      <td scope="row">
+
+      </td>
+      <td scope="row">
+
+      </td>
+      <td scope="row">
+        <button mat-button color="warn" class="delete" type="button"></button>
+        Upvote
+
+
+        <button mat-button color="warn" class="delete" type="button">
           Delete
         </button>
       </td>

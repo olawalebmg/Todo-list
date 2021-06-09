@@ -28,9 +28,9 @@
     margin-top: 1em;
   }
 #add_button {
-    float: left;
-    width: 20%;
-    padding: 7px;
+    float: right;
+    width: -90;
+    padding: 20px;
     margin-bottom: 10%;
     background: #2196F3;
     color: white;
@@ -51,4 +51,14 @@
     float: left;
     width: 80%;
     background: #f1f1f1;
+  }
+
+
+  table {
+    table-layout: fixed;
+    white-space: normal!important;
+  }
+  
+  td {
+    word-wrap: break-word;
   }
