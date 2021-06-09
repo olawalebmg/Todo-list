@@ -8,7 +8,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
-import { UserHomeComponent } from './user-home/user-home.component';
 
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -26,7 +25,6 @@ import { AuthService } from "./auth-service";
     RegisterComponent,
     HomeComponent,
     ErrorComponent,
-    UserHomeComponent,
     DashboardComponent
   ],
   imports: [
