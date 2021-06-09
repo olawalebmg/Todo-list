@@ -3,10 +3,11 @@ import { AuthService } from "../auth-service";
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 
 interface Todo {
-  content: string; 
+  content: string;
   id?: string;
   datemodified?: Date;
   isDone?: boolean;
@@ -28,6 +29,15 @@ export class DashboardComponent implements OnInit {
     content: "",
   }
   editValue: boolean = false;
+
+  //getting the number of completed task
+  completed!: number;
+
+  //getting the number of task not completed
+  not_completed!: number;
+
+  // getting the number of tasks 
+  task!: number
 
 
 
@@ -56,17 +66,20 @@ export class DashboardComponent implements OnInit {
           return { id, ...data };
         }))
       );
+
+
   }
 
   ngOnInit() {
-    this.todoList$.subscribe(data => console.log(data));
+    this.todoList$.subscribe(data => {
+      this.task = data.length
+      this.completed = data.filter(o => o.isDone === true).length;
+      this.not_completed = data.filter(o => o.isDone === false).length
+    })
+
   }
 
-
-
-
-
-
+  // when the window size change 
   open() {
     if (this.mySidebar.nativeElement.style.display === 'block') {
       this.mySidebar.nativeElement.style.display = 'none';
@@ -90,15 +103,18 @@ export class DashboardComponent implements OnInit {
       this.inputValue.isDone = false;
       this.todoCollection.add(this.inputValue);
       this.inputValue.content = "";
-      console.log("Added Successfuly!");
+
     }
   }
+
+  //delete task from firestore
 
   deleteItem(i: any) {
     this.todoDoc = this.db.doc(`Todolist/${i}`);
     this.todoDoc.delete();
-    console.log("Item Deleted!");
   }
+
+
 
   saveNewItem() {
     if (this.inputValue.content != "") {
@@ -108,32 +124,34 @@ export class DashboardComponent implements OnInit {
       this.todoDoc.update(this.inputValue);
       this.editValue = false;
       this.inputValue.content = "";
-      console.log("Updated Successfuly!", "Dismiss");
     }
   }
-
-  markItemAsDone(item:any) {
+  //mark item as done
+  markItemAsDone(item: any) {
     this.inputValue.content = item.content;
     this.inputValue.isDone = true;
     this.todoDoc = this.db.doc(`Todolist/${item.id}`);
     this.todoDoc.update(this.inputValue);
     this.inputValue.content = "";
-    console.log("Item Done!");
   }
-  markItemAsNotDone(item:any) {
+
+  //mark item as not done 
+  markItemAsNotDone(item: any) {
     this.inputValue.content = item.content;
     this.inputValue.isDone = false;
     this.todoDoc = this.db.doc(`Todolist/${item.id}`);
     this.todoDoc.update(this.inputValue);
     this.inputValue.content = "";
-    console.log("Item Not Done!");
+
   }
 
-  editItem(i:any) {
+  // edit item
+  editItem(i: any) {
     this.inputValue.content = i.content;
     this.editValue = true;
     this.inputId = i.id;
   }
 
-
 }
+
+
