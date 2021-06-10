@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { DashboardComponent } from './dashboard/dashboard.component'
 
 import { AuthService } from "./auth-service";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { AuthService } from "./auth-service";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    FormsModule
+    FormsModule, 
+    NgbModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]
