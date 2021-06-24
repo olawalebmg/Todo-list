@@ -11,10 +11,17 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 export class LoginComponent implements OnInit {
   closeModal!: string;
 
+  signup: boolean = false;
+
   constructor( public AuthService:AuthService,private modalService: NgbModal) { }
 
   ngOnInit(): void {
   }
+
+  sign(){
+    this.signup=true
+  }
+
   triggerModal(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
       this.closeModal = `Closed with: ${res}`;
@@ -32,5 +39,7 @@ export class LoginComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
+ 
 
 }

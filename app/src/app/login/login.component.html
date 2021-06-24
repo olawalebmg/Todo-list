@@ -37,8 +37,7 @@
     <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small">
       <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
       <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
-      <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
-      <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
+      <a href="#Login" class="w3-bar-item w3-button" style="width:25% !important">LOGIN</a>
     </div>
   </div>
 
@@ -46,7 +45,7 @@
     <div class="card">
       <form (submit)="AuthService.SignIn(userName.value, userPassword.value)">
          <h2 class="title"> Log in</h2>
-         <p class="subtitle">Don't have an account? <a href="#"> sign Up</a></p>
+         <p class="subtitle">Don't have an account? <a class="aa" style="color: blue;" (click)="sign()" > sign Up</a></p>
    
          <div class="social-login">
             <button class="google-btn">
@@ -63,26 +62,13 @@
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required  #userPassword>
          </div>
-         <button type="submit"  class="cta-btn"  (submit)="AuthService.SignIn(userName.value, userPassword.value)">Log In</button>
+         <button type="submit" *ngIf="!signup"  class="cta-btn"  (submit)="AuthService.SignIn(userName.value, userPassword.value)">Log In</button>
+         <button type="submit"  *ngIf="signup" class="cta-btn"  (submit)="AuthService.SignUp(userName.value, userPassword.value)">Sign Up</button>
          <a class="forget-pass" href="#">Forgot password?</a>
       </form>
    </div>
-  
-  
-  
+
   </div>
-
-  <!-- <div class="bottom-container">
-    <div class="row">
-      <div class="col">
-        <a (click)="AuthService.SignUp(userName.value, userPassword.value)" style="color:white" class="btn">Sign up</a>
-      </div>
-      <div class="col">
-        <a href="#" style="color:white" class="btn">Forgot password?</a>
-      </div>
-    </div>
-  </div> -->
-
 </body>
 
 </html>

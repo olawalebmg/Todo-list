@@ -115,3 +115,8 @@ input[type="password"] {
 .google-btn:hover{
   background-color: lightgray;
 }
+
+.aa:hover{
+  background-color: lightgray;
+  cursor: pointer;
+}
