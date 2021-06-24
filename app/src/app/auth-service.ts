@@ -57,6 +57,8 @@ export class AuthService {
     try {
       const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
       this.SetUserData(result.user);
+      window.alert('Account created');
+      window.location.reload();
     } catch (error) {
       window.alert(error.message);
     }

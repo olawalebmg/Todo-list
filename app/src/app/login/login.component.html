@@ -43,7 +43,7 @@
 
   <div class="w3-padding-large" id="main">
     <div class="card">
-      <form (submit)="AuthService.SignIn(userName.value, userPassword.value)">
+     
          <h2 class="title"> Log in</h2>
          <p class="subtitle">Don't have an account? <a class="aa" style="color: blue;" (click)="sign()" > sign Up</a></p>
    
@@ -55,19 +55,22 @@
          </div>
    
          <p class="or"><span>or</span></p>
-   
+
+         <form  (submit)="AuthService.SignIn(userName.value, userPassword.value)">
          <div class="email-login">
             <label for="email"> <b>Email</b></label>
             <input type="text" placeholder="Enter Email" name="uname" required #userName >
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required  #userPassword>
          </div>
-         <button type="submit" *ngIf="!signup"  class="cta-btn"  (submit)="AuthService.SignIn(userName.value, userPassword.value)">Log In</button>
-         <button type="submit"  *ngIf="signup" class="cta-btn"  (submit)="AuthService.SignUp(userName.value, userPassword.value)">Sign Up</button>
+         <button type="submit" *ngIf="!signup"  class="cta-btn"  (click)="AuthService.SignIn(userName.value, userPassword.value)">Log In</button>
+        </form>
+         
+         <button type="submit"  *ngIf="signup" class="cta-btn"  (click)="AuthService.SignUp(userName.value, userPassword.value)">Sign Up</button>
          <a class="forget-pass" href="#">Forgot password?</a>
-      </form>
+      
    </div>
-
+  
   </div>
 </body>
 
