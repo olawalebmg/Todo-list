@@ -3,7 +3,9 @@ import { AuthService } from "../auth-service";
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { filter } from 'rxjs/operators';
+
+
+
 
 
 interface Todo {
@@ -39,7 +41,7 @@ export class DashboardComponent implements OnInit {
   // getting the number of tasks 
   task!: number
 
-
+  user=""
 
   // getting dom element in html 
   @ViewChild('mySidebar', { static: false })
@@ -51,14 +53,26 @@ export class DashboardComponent implements OnInit {
   todoList$: Observable<Todo[]>;
 
 
-  constructor(private db: AngularFirestore, public AuthService: AuthService) {
+  constructor(private db: AngularFirestore, public AuthService: AuthService ) {
+
+    
+    this.user = AuthService.userState.email
+    const user= AuthService.userState.email
 
 
-    this.todoCollection = this.db.collection('Todolist');
+
+
+
+
+    this.todoCollection = this.db.collection("Todolist")
+
+  
+
+
+  
 
     // The code below will query all the todo
-    // and return id + data (e.g. title, description)
-    this.todoList$ = this.db.collection<Todo>('Todolist')
+    this.todoList$ = this.db.collection<Todo>("Todolist")
       .snapshotChanges().pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as Todo;
@@ -71,13 +85,19 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.todoList$.subscribe(data => {
       this.task = data.length
       this.completed = data.filter(o => o.isDone === true).length;
       this.not_completed = data.filter(o => o.isDone === false).length
     })
 
+    console.log(this.user)
+
+
   }
+
 
   // when the window size change 
   open() {
@@ -110,17 +130,17 @@ export class DashboardComponent implements OnInit {
   //delete task from firestore
 
   deleteItem(i: any) {
-    this.todoDoc = this.db.doc(`Todolist/${i}`);
+    this.todoDoc = this.db.doc(`${this.user}/${i}`);
     this.todoDoc.delete();
   }
 
-
+  
 
   saveNewItem() {
     if (this.inputValue.content != "") {
       this.inputValue.isDone = false;
       this.inputValue.datemodified = new Date();
-      this.todoDoc = this.db.doc(`Todolist/${this.inputId}`);
+      this.todoDoc = this.db.doc(`${this.user}/${this.inputId}`);
       this.todoDoc.update(this.inputValue);
       this.editValue = false;
       this.inputValue.content = "";
@@ -130,7 +150,7 @@ export class DashboardComponent implements OnInit {
   markItemAsDone(item: any) {
     this.inputValue.content = item.content;
     this.inputValue.isDone = true;
-    this.todoDoc = this.db.doc(`Todolist/${item.id}`);
+    this.todoDoc = this.db.doc(`${this.user}/${item.id}`);
     this.todoDoc.update(this.inputValue);
     this.inputValue.content = "";
   }
@@ -139,7 +159,7 @@ export class DashboardComponent implements OnInit {
   markItemAsNotDone(item: any) {
     this.inputValue.content = item.content;
     this.inputValue.isDone = false;
-    this.todoDoc = this.db.doc(`Todolist/${item.id}`);
+    this.todoDoc = this.db.doc(`${this.user}/${item.id}`);
     this.todoDoc.update(this.inputValue);
     this.inputValue.content = "";
 
@@ -151,6 +171,7 @@ export class DashboardComponent implements OnInit {
     this.editValue = true;
     this.inputId = i.id;
   }
+
 
 }
 

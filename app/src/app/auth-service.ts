@@ -20,7 +20,10 @@ export interface User {
 
 
 export class AuthService {
+
   userState: any;
+  static userState: any;
+  static SignOut: any;
 
   constructor(
     public afs: AngularFirestore,
@@ -48,7 +51,7 @@ export class AuthService {
         this.router.navigate(['dashboard']);
       });
       this.SetUserData(result.user);
-    } catch (error) {
+    } catch (error) { 
       window.alert(error.message);
     }
   }
@@ -81,7 +84,7 @@ export class AuthService {
 
   GoogleAuth() {
     return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
-    console.log("clicked")
+   
   }
 
   async AuthLogin(provider: any) {
@@ -115,9 +118,12 @@ export class AuthService {
     localStorage.removeItem('user');
     this.router.navigate(['']);
   }
+
 }
 
 function mail(mail: any) {
   throw new Error('Function not implemented.');
 }
+
+
 
